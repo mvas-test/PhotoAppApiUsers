@@ -11,6 +11,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 	
+//	private Environment env;
+//	
+//	@Autowired
+//	public WebSecurity(Environment env) {
+//		this.env = env; 
+//	}
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
