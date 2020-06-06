@@ -11,5 +11,9 @@ public class PhotoAppApiUsersApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PhotoAppApiUsersApplication.class, args);
 	}
+	
+//	public BCryptPasswordEncoder bCryptPasswordEncoder() {
+//		return new BCryptPasswordEncoder();
+//	}
 
 }
