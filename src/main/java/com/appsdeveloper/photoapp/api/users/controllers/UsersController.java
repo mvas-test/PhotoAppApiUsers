@@ -39,7 +39,7 @@ public class UsersController {
 	public String status() {
 		String currentStatus = "Something went wrong...";
 		try {
-			currentStatus = "Users Service is Working on server" + env.getProperty("java.rmi.server.hostname") + " with ip/port:" + InetAddress.getLocalHost().getHostAddress() + ":" + env.getProperty("local.server.port");
+			currentStatus = "Users Service is Working on server: " + env.getProperty("java.rmi.server.hostname") + ", with ip/port:" + InetAddress.getLocalHost().getHostAddress() + ":" + env.getProperty("local.server.port");
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
