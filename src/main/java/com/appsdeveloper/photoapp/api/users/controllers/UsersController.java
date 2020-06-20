@@ -48,7 +48,8 @@ public class UsersController {
 			
 			currentStatus = "Users Service is Working on server: " + env.getProperty("java.rmi.server.hostname") 
 							+ ", with ip/port:" + InetAddress.getLocalHost().getHostAddress() + ":" + env.getProperty("local.server.port")
-							+ "\nConfig Server Status is: " + configServerStatus;
+							+ "\nConfig Server Status is: " + configServerStatus
+							+ "\nToken:" + env.getProperty("token.secret");
 			
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
