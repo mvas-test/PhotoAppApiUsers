@@ -38,8 +38,18 @@ public class UsersController {
 	@GetMapping("/status/check")
 	public String status() {
 		String currentStatus = "Something went wrong...";
+
 		try {
-			currentStatus = "Users Service is Working on server: " + env.getProperty("java.rmi.server.hostname") + ", with ip/port:" + InetAddress.getLocalHost().getHostAddress() + ":" + env.getProperty("local.server.port");
+			String configServerStatus = env.getProperty("config.server.status");
+			
+			if (configServerStatus == null) {
+				configServerStatus = "OFF";
+			}
+			
+			currentStatus = "Users Service is Working on server: " + env.getProperty("java.rmi.server.hostname") 
+							+ ", with ip/port:" + InetAddress.getLocalHost().getHostAddress() + ":" + env.getProperty("local.server.port")
+							+ "\nConfig Server Status is: " + configServerStatus;
+			
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
