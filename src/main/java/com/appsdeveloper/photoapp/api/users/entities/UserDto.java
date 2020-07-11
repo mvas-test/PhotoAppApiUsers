@@ -1,6 +1,7 @@
 package com.appsdeveloper.photoapp.api.users.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class UserDto implements Serializable {
 	
@@ -21,6 +22,8 @@ public class UserDto implements Serializable {
 	private String userID;
 	
 	private String encryptedPassword;
+	
+	private List<AlbumResponseModel> albums;
 
 	public String getFirstName() {
 		return firstName;
@@ -70,9 +73,23 @@ public class UserDto implements Serializable {
 		this.encryptedPassword = encryptedPassword;
 	}
 
+	public List<AlbumResponseModel> getAlbums() {
+		return albums;
+	}
+
+	public void setAlbums(List<AlbumResponseModel> albums) {
+		this.albums = albums;
+	}
+
 	@Override
 	public String toString() {
 		return "UserDto [firstName=" + firstName + ", lastName=" + lastName + ", password=" + password + ", email="
-				+ email + ", userID=" + userID + ", encryptedPassword=" + encryptedPassword + "]";
+				+ email + ", userID=" + userID + ", encryptedPassword=" + encryptedPassword + ", albums=" + albums
+				+ ", getFirstName()=" + getFirstName() + ", getLastName()=" + getLastName() + ", getPassword()="
+				+ getPassword() + ", getEmail()=" + getEmail() + ", getUserID()=" + getUserID()
+				+ ", getEncryptedPassword()=" + getEncryptedPassword() + ", getAlbums()=" + getAlbums()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
 	}
+
 }
