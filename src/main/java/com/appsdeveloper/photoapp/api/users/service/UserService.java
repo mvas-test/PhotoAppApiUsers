@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.security.core.userdetails.User;
@@ -20,6 +22,8 @@ import com.appsdeveloper.photoapp.api.users.entities.UserEntity;
 import com.appsdeveloper.photoapp.api.users.repositories.UserRepository;
 import com.appsdeveloper.photoapp.api.users.service.clients.AlbumsServiceClient;
 
+import feign.FeignException;
+
 @Service
 public class UserService implements UserDetailsService {
 
@@ -28,6 +32,8 @@ public class UserService implements UserDetailsService {
 	//RestTemplate restTemplate;
 	Environment environment;
 	AlbumsServiceClient albumsServiceClient;
+	
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	public UserService(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder, 
@@ -87,7 +93,13 @@ public class UserService implements UserDetailsService {
 //																					});		
 				
 //		List<AlbumResponseModel> albumsList = albumsListResponse.getBody();
-		List<AlbumResponseModel> albumsList = albumsServiceClient.getAlbums(userID);
+		List<AlbumResponseModel> albumsList = null;
+		try {
+			albumsList = albumsServiceClient.getAlbums(userID);
+		} catch (FeignException e) {
+			// TODO Auto-generated catch block
+			logger.error(e.getLocalizedMessage());
+		}
 		
 		userDto.setAlbums(albumsList);
 		
