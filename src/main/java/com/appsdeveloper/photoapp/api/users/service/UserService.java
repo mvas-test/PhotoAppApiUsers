@@ -99,7 +99,9 @@ public class UserService implements UserDetailsService {
 //			logger.error(e.getLocalizedMessage());
 //		}
 		
+		logger.info("Before calling Albums microservice");
 		List<AlbumResponseModel> albumsList = albumsServiceClient.getAlbums(userID);
+		logger.info("After calling Albums microservice");
 		
 		userDto.setAlbums(albumsList);
 		
